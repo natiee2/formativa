@@ -1,0 +1,34 @@
+{% extends 'prestamos/base.html' %}
+{% block title %}Listado de Categorías{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Gestión de Categorías</h2>
+    <a href="{% url 'categoria_create' %}" class="btn btn-dark">Nueva Categoría</a>
+</div>
+
+<div class="table-responsive bg-white p-3 rounded shadow-sm">
+    <table class="table table-striped align-middle">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th class="text-end">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cat in categorias %}
+            <tr>
+                <td>{{ cat.nombre }}</td>
+                <td>{{ cat.descripcion }}</td>
+                <td class="text-end">
+                    <a href="{% url 'categoria_update' cat.id %}" class="btn btn-sm btn-outline-primary">Editar</a>
+                    <a href="{% url 'categoria_delete' cat.id %}" class="btn btn-sm btn-outline-danger">Eliminar</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="3" class="text-center text-muted">No hay categorías registradas.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

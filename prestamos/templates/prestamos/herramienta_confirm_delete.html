@@ -1,0 +1,13 @@
+{% extends 'prestamos/base.html' %}
+{% block title %}Eliminar Herramienta{% endblock %}
+{% block content %}
+<div class="card shadow-sm col-md-6 mx-auto text-center p-4">
+    <h3>¿Estás seguro?</h3>
+    <p class="text-muted">Estás a punto de eliminar la herramienta <strong>{{ herramienta.nombre }}</strong> ({{ herramienta.codigo }}).</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Sí, eliminar</button>
+        <a href="{% url 'herramienta_list' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'prestamos/base.html' %}
+
+{% block title %}Inicio - Herramientas en Común{% endblock %}
+
+{% block content %}
+<div class="p-5 mb-4 bg-white rounded-3 shadow-sm">
+    <div class="container-fluid py-3">
+        <h1 class="display-5 fw-bold">Sistema de Préstamo de Herramientas</h1>
+        <p class="col-md-8 fs-4 text-muted">Junta de Vecinos Villa Los Aromos</p>
+        <hr class="my-4">
+        {% if user.is_authenticated %}
+            <p class="lead">Bienvenido de nuevo, <strong>{{ user.username }}</strong>.</p>
+            {% if user.is_staff %}
+                <a class="btn btn-dark btn-lg mt-2" href="{% url 'herramienta_list' %}" role="button">Gestionar Herramientas</a>
+                <a class="btn btn-outline-secondary btn-lg mt-2 ms-2" href="{% url 'categoria_list' %}" role="button">Gestionar Categorías</a>
+            {% endif %}
+        {% else %}
+            <p>Inicia sesión para acceder a las opciones del sistema.</p>
+            <a class="btn btn-dark btn-lg mt-2" href="{% url 'login' %}" role="button">Iniciar Sesión</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
